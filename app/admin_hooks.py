@@ -10,14 +10,14 @@ from .models import (
 
 class HeaderTextAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
-        if HeaderText.objects.count() >= 1:
+        if HeaderText.objects.count() >= 6:
             return False
         return super().has_add_permission(request)
     
     def save_model(self, request, obj, form, change):
-        if not change and HeaderText.objects.count() >= 1:
+        if not change and HeaderText.objects.count() >= 6:
             from django.core.exceptions import ValidationError
-            raise ValidationError('You cannot add more than 1 items.')
+            raise ValidationError('You cannot add more than 6 items.')
         super().save_model(request, obj, form, change)
 
 

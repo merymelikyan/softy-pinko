@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/templatemo-softy-pinko.css' %}">
   </head>
-  <body>
+  <body id="to-top">
   <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -33,7 +33,7 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="#" class="logo"><img src="{% static 'images/logo.png' %}" alt="Softy Pinko"/></a>
+                        <a href="#to-top" class="logo"><img src="{% static 'images/logo.png' %}" alt="Softy Pinko"/></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
@@ -75,9 +75,8 @@
             <div class="container">
                 <div class="row">
                     <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
-                        {% comment %} <h1>We provide the best <strong>strategy</strong><br>to grow up your <strong>business</strong></h1> {% endcomment %} 
-                        <h1>{{header_text.title}}</h1> 
-                         <p>{{header_text.description}}</p>  
+                        <h1>{{header_text.0.title}}</h1> 
+                         <p>{{header_text.0.description}}</p>  
                         <a href="#features" class="main-button-slider">Discover More</a>
                     </div>
                 </div>
@@ -86,6 +85,7 @@
         <!-- ***** Header Text End ***** -->
     </div>
     <!-- ***** Welcome Area End ***** -->
+
     <!-- ***** Features Small Start ***** -->
     <section class="section home-feature">
         <div class="container">
@@ -150,7 +150,7 @@
                 </div>
                 <div class="col-lg-1"></div>
                 <div class="col-lg-5 col-md-12 col-sm-12 align-self-center mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                    <img src="{{right_block.image.url}}" alt="{{right_block.title}}">class="rounded img-fluid d-block mx-auto" 
+                    <img src="{{right_block.image.url}}" alt="{{right_block.title}}" class="rounded img-fluid d-block mx-auto" />
                 </div>
             </div>
         </div>
@@ -164,8 +164,8 @@
                 <div class="row">
                     <div class="offset-lg-3 col-lg-6">
                         <div class="info">
-                            <h1>{{work_process_header.title}}</h1>
-                            <p>{{work_process_header.description}}</p>
+                            <h2>{{header_text.5.title}}</h2>
+                            <p>{{header_text.5.description}}</p>
                         </div>
                     </div>
                 </div>
@@ -195,71 +195,37 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="center-heading">
-                        <h2 class="section-title">What do they say?</h2>
+                        <h2 class="section-title">{{ header_text.1.title }}</h2>
                     </div>
                 </div>
                 <div class="offset-lg-3 col-lg-6">
                     <div class="center-text">
-                        <p>Donec tempus, sem non rutrum imperdiet, lectus orci fringilla nulla, at accumsan elit eros a turpis. Ut sagittis lectus libero.</p>
+                        <p>{{ header_text.1.description }}</p>
                     </div>
                 </div>
             </div>
             <!-- ***** Section Title End ***** -->
 
             <div class="row">
-                <!-- ***** Testimonials Item Start ***** -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="team-item">
-                        <div class="team-content">
-                            <i><img src="{% static 'images/testimonial-icon.png' %}" alt=""></i>
-                            <p>Proin a neque nisi. Nam ipsum nisi, venenatis ut nulla quis, egestas scelerisque orci. Maecenas a finibus odio.</p>
-                            <div class="user-image">
-                                <img src="http://placehold.it/60x60" alt="">
-                            </div>
-                            <div class="team-info">
-                                <h3 class="user-name">Catherine Soft</h3>
-                                <span>Managing Director</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ***** Testimonials Item End ***** -->
-                
-                <!-- ***** Testimonials Item Start ***** -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="team-item">
-                        <div class="team-content">
-                            <i><img src="{% static 'images/testimonial-icon.png' %}" alt=""></i>
-                            <p>Integer molestie aliquam gravida. Nullam nec arcu finibus, imperdiet nulla vitae, placerat nibh. Cras maximus venenatis molestie.</p>
-                            <div class="user-image">
-                                <img src="http://placehold.it/60x60" alt="">
-                            </div>
-                            <div class="team-info">
-                                <h3 class="user-name">Kelvin Wood</h3>
-                                <span>Digital Marketer</span>
+                {% for r in reviews %}
+                    <!-- ***** Testimonials Item Start ***** -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="team-item">
+                            <div class="team-content">
+                                <i><img src="{% static 'images/testimonial-icon.png' %}" alt=""></i>
+                                <p>{{r.review}}</p>
+                                <div class="user-image">
+                                    <img class="img-thumbnail" src={{r.image.url}} alt={{r.first_name}}{{r.last_name}} />
+                                </div>
+                                <div class="team-info">
+                                    <h3 class="user-name">{{r.first_name}}{{r.last_name}}</h3>
+                                    <span>{{r.position}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- ***** Testimonials Item End ***** -->
-                
-                <!-- ***** Testimonials Item Start ***** -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="team-item">
-                        <div class="team-content">
-                            <i><img src="{% static 'images/testimonial-icon.png' %}" alt=""></i>
-                            <p>Quisque diam odio, maximus ac consectetur eu, auctor non lorem. Cras quis est non ante ultrices molestie. Ut vehicula et diam at aliquam.</p>
-                            <div class="user-image">
-                                <img src="http://placehold.it/60x60" alt="">
-                            </div>
-                            <div class="team-info">
-                                <h3 class="user-name">David Martin</h3>
-                                <span>Website Manager</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ***** Testimonials Item End ***** -->
+                    <!-- ***** Testimonials Item End ***** -->
+                {% endfor %}  
             </div>
         </div>
     </section>
@@ -272,12 +238,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="center-heading">
-                        <h2 class="section-title">Pricing Plans</h2>
+                        <h2 class="section-title">{{ header_text.2.title }}</h2>
                     </div>
                 </div>
                 <div class="offset-lg-3 col-lg-6">
                     <div class="center-text">
-                        <p>Donec vulputate urna sed rutrum venenatis. Cras consequat magna quis arcu elementum, quis congue risus volutpat.</p>
+                        <p>{{ header_text.2.description }}</p>
                     </div>
                 </div>
             </div>
@@ -414,12 +380,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="center-heading">
-                        <h2 class="section-title">Blog Entries</h2>
+                        <h2 class="section-title">{{header_text.3.title}}</h2>
                     </div>
                 </div>
                 <div class="offset-lg-3 col-lg-6">
                     <div class="center-text">
-                        <p>Integer molestie aliquam gravida. Nullam nec arcu finibus, imperdiet nulla vitae, placerat nibh. Cras maximus venenatis molestie.</p>
+                        <p>{{header_text.3.description}}</p>
                     </div>
                 </div>
             </div>
@@ -432,12 +398,8 @@
                             <img src="{% static 'images/blog-item-01.png' %}" alt="">
                         </div>
                         <div class="blog-content">
-                            <h3>
-                                <a href="#">Vivamus ac vehicula dui</a>
-                            </h3>
-                            <div class="text">
-                               Cras aliquet ligula dui, vitae fermentum velit tincidunt id. Praesent eu finibus nunc. Nulla in sagittis eros. Aliquam egestas augue.
-                            </div>
+                            <h3><a href="#">Vivamus ac vehicula dui</a>
+                            </h3><div class="text">\ Cras aliquet ligula dui, vitae fermentum velit tincidunt id. Praesent eu finibus nunc. Nulla in sagittis eros. Aliquam egestas augue.</div>
                             <a href="#" class="main-button">Read More</a>
                         </div>
                     </div>
@@ -448,12 +410,8 @@
                             <img src="{% static 'images/blog-item-02.png' %}" alt="">
                         </div>
                         <div class="blog-content">
-                            <h3>
-                              <a href="#">Phasellus convallis augue</a>
-                            </h3>
-                            <div class="text">
-                              Aliquam commodo ornare nisl, et scelerisque nisl dignissim ac. Vestibulum finibus urna ut velit venenatis, vel ultrices sapien mattis.
-                            </div>
+                            <h3><a href="#">Phasellus convallis augue</a></h3>
+                            <div class="text">Aliquam commodo ornare nisl, et scelerisque nisl dignissim ac. Vestibulum finibus urna ut velit venenatis, vel ultrices sapien mattis.</div>
                             <a href="#" class="main-button">Read More</a>
                         </div>
                     </div>
@@ -464,12 +422,8 @@
                           <img src="{% static 'images/blog-item-03.png' %}" alt="">
                         </div>
                         <div class="blog-content">
-                            <h3>
-                              <a href="#">Nam gravida purus non</a>
-                            </h3>
-                            <div class="text">
-                              Maecenas eu erat vitae dui convallis consequat vel gravida nulla. Vestibulum finibus euismod odio, ut tempus enim varius eu.
-                            </div>
+                            <h3><a href="#">Nam gravida purus non</a></h3>
+                            <div class="text">Maecenas eu erat vitae dui convallis consequat vel gravida nulla. Vestibulum finibus euismod odio, ut tempus enim varius eu.</div>
                             <a href="#" class="main-button">Read More</a>
                         </div>
                     </div>
@@ -486,12 +440,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="center-heading">
-                      <h2 class="section-title">Talk To Us</h2>
+                      <h2 class="section-title">{{header_text.4.title}}</h2>
                     </div>
                 </div>
                 <div class="offset-lg-3 col-lg-6">
                     <div class="center-text">
-                      <p>Maecenas pellentesque ante faucibus lectus vulputate sollicitudin. Cras feugiat hendrerit semper.</p>
+                      <p>{{header_text.4.description}}</p>
                     </div>
                 </div>
             </div>
@@ -555,13 +509,17 @@
                         <li>
                           <a href="#"><i class="fa fa-facebook"></i></a></li>
                         <li>
-                          <a href="#"><i class="fa fa-twitter"></i></a></li>
+                          <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
                         <li>
-                          <a href="#"><i class="fa fa-linkedin"></i></a></li>
+                          <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
                         <li>
-                          <a href="#"><i class="fa fa-rss"></i></a></li>
+                          <a href="#"><i class="fa fa-rss"></i></a>
+                        </li>
                         <li>
-                          <a href="#"><i class="fa fa-dribbble"></i></a></li>
+                          <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </li>
                     </ul>
                 </div>
             </div>
