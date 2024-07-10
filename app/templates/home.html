@@ -1,0 +1,503 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block home_template %}
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="welcome-area" id="welcome">
+        <!-- ***** Header Text Start ***** -->
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+                        <h1>{{header_text.0.title}}</h1> 
+                         <p>{{header_text.0.description}}</p>  
+                        <a href="#features" class="main-button-slider">Discover More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Header Text End ***** -->
+    </div>
+    <!-- ***** Welcome Area End ***** -->
+    <!-- ***** Features Small Start ***** -->
+    <section class="section home-feature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        {% for item in tree_blocks %}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                                <div class="features-small-item">
+                                    <div class="icon">
+                                        <i><img src="{{item.image.url}}" alt="{{item.title}}"/></i>
+                                    </div>
+                                    <h5 class="features-title">{{item.title}}</h5>
+                                    <p>{{item.description}}</p>
+                                </div>
+                            </div>
+                        {% endfor %}     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Small End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-top-70 padding-bottom-0" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="{{left_block.image.url}}" alt="{{left_block.title}}" class="rounded img-fluid d-block mx-auto" >
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">{{left_block.title}}</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>{{left_block.description}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">{{right_block.title}}</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>{{right_block.description}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <img src="{{right_block.image.url}}" alt="{{right_block.title}}" class="rounded img-fluid d-block mx-auto" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Home Parallax Start ***** -->
+    <section class="mini" id="work-process">
+        <div class="mini-content">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="info">
+                            <h2>{{header_text.5.title}}</h2>
+                            <p>{{header_text.5.description}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ***** Mini Box Start ***** -->
+                <div class="row">
+                    {% for item in work_process_items %}
+                        <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                            <a href="#" class="mini-box">
+                                <i><img src="{{item.image.url}}" alt="{{item.title}}"/></i>
+                                <strong>{{item.title}}</strong>
+                                <span>{{item.description}}</span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- ***** Mini Box End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Home Parallax End ***** -->
+
+    <!-- ***** Testimonials Start ***** -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">{{ header_text.1.title }}</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>{{ header_text.1.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                {% for r in reviews %}
+                    <!-- ***** Testimonials Item Start ***** -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="team-item">
+                            <div class="team-content">
+                                <i><img src="{% static 'images/testimonial-icon.png' %}" alt=""></i>
+                                <p>{{r.review}}</p>
+                                <div class="user-image">
+                                    <img class="img-thumbnail" src={{r.image.url}} alt="{{r.first_name}}{{r.last_name}}" />
+                                </div>
+                                <div class="team-info">
+                                    <h3 class="user-name">{{r.first_name}}{{r.last_name}}</h3>
+                                    <span>{{r.position}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ***** Testimonials Item End ***** -->
+                {% endfor %}  
+            </div>
+        </div>
+    </section>
+    <!-- ***** Testimonials End ***** -->
+
+    <!-- ***** Pricing Plans Start ***** -->
+    <section class="section colored" id="pricing-plans">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">{{ header_text.2.title }}</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>{{ header_text.2.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                <!-- ***** Pricing Item Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                    <div class="pricing-item">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">{{pricing_plan.0.title}}</h3>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-wrapper">
+                                <span class="currency">$</span>
+                                <span class="price">{{pricing_plan.0.price}}</span>
+                                <span class="period">monthly</span>
+                            </div>
+                            <ul class="list">
+                                {% if pricing_plan.0.is_space %}  
+                                    <li class="active">{{pricing_plan.0.space}}</li>
+                                {% else %}  
+                                    <li>{{pricing_plan.0.space}}</li>
+                                {% endif %} 
+
+                                {% if pricing_plan.0.is_transfer %}  
+                                    <li class="active">{{pricing_plan.0.transfer}}</li>
+                                {% else %}  
+                                    <li>{{pricing_plan.0.transfer}}</li>
+                                {% endif %} 
+
+                                {% if pricing_plan.0.is_panel %}  
+                                    <li class="active">{{pricing_plan.0.panel}}</li>
+                                {% else %}  
+                                    <li>{{pricing_plan.0.panel}}</li>
+                                {% endif %}  
+
+                                {% if pricing_plan.0.is_support %}  
+                                    <li class="active">{{pricing_plan.0.support}}</li>
+                                {% else %}  
+                                    <li>{{pricing_plan.0.support}}</li>
+                                {% endif %} 
+                                  
+                                {% if pricing_plan.0.is_emails %}  
+                                    <li class="active">{{pricing_plan.0.emails}}</li>
+                                {% else %}  
+                                    <li>{{pricing_plan.0.emails}}</li>
+                                {% endif %}   
+                                
+                                {% if pricing_plan.0.is_security %}  
+                                    <li class="active">{{pricing_plan.0.security}}</li>
+                                {% else %}  
+                                    <li>{{pricing_plan.0.security}}</li>
+                                {% endif %}   
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="#" class="main-button">Purchase Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Pricing Item End ***** -->
+
+                <!-- ***** Pricing Item Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
+                    <div class="pricing-item">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">{{pricing_plan.1.title}}</h3>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-wrapper">
+                                <span class="currency">$</span>
+                                <span class="price">{{pricing_plan.1.price}}</span>
+                                <span class="period">monthly</span>
+                            </div>
+                            <ul class="list">
+                                {% if pricing_plan.1.is_space %}
+                                    <li class="active">{{pricing_plan.1.space}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.1.space}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.1.is_transfer %}
+                                    <li class="active">{{pricing_plan.1.transfer}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.1.transfer}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.1.is_panel %}
+                                    <li class="active">{{pricing_plan.1.panel}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.1.panel}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.1.is_support %}
+                                    <li class="active">{{pricing_plan.0.support}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.1.support}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.1.is_emails %}
+                                    <li class="active">{{pricing_plan.1.emails}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.1.emails}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.1.is_security %}
+                                    <li class="active">{{pricing_plan.1.security}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.1.security}}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="#" class="main-button">Purchase Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Pricing Item End ***** -->
+
+                <!-- ***** Pricing Item Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+                    <div class="pricing-item">
+                        <div class="pricing-header">
+                            <h3 class="pricing-title">{{pricing_plan.2.title}}</h3>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-wrapper">
+                                <span class="currency">$</span>
+                                <span class="price">{{pricing_plan.2.price}}</span>
+                                <span class="period">monthly</span>
+                            </div>
+                            <ul class="list">
+                                {% if pricing_plan.2.is_space %}
+                                    <li class="active">{{pricing_plan.2.space}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.2.space}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.2.is_transfer %}
+                                    <li class="active">{{pricing_plan.2.transfer}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.2.transfer}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.2.is_panel %}
+                                    <li class="active">{{pricing_plan.2.panel}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.2.panel}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.2.is_support %}
+                                    <li class="active">{{pricing_plan.0.support}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.2.support}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.2.is_emails %}
+                                    <li class="active">{{pricing_plan.2.emails}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.2.emails}}</li>
+                                {% endif %}
+                
+                                {% if pricing_plan.2.is_security %}
+                                    <li class="active">{{pricing_plan.2.security}}</li>
+                                {% else %}
+                                    <li>{{pricing_plan.2.security}}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="#" class="main-button">Purchase Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Pricing Item End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Pricing Plans End ***** -->
+
+    <!-- ***** Counter Parallax Start ***** -->
+    <section class="counter">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item decoration-bottom">
+                            <strong>{{counter.projects}}</strong>
+                            <span>Projects</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item decoration-top">
+                            <strong>{{counter.happy_clients}}</strong>
+                            <span>Happy Clients</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item decoration-bottom">
+                            <strong>{{counter.award_wins}}</strong>
+                            <span>Awards Wins</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item">
+                            <strong>{{counter.countries}}</strong>
+                            <span>Countries</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Counter Parallax End ***** -->   
+
+    <!-- ***** item Start ***** -->
+
+    <section class="section" id="blog">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">{{header_text.3.title}}</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>{{header_text.3.description}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                {% for item in all_blogs %}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="blog-post-thumb">
+                            <div class="img">
+                                <img src="{{item.image.url}}" alt="{{item.title}}" class="img-fluid" />
+                            </div>
+                            <div class="blog-content">
+                                <h3><a href="{% url "blog" item.id %}">{{item.title}}</a></h3>
+                                <div class="text">
+                                    {{item.description|slice:"0:200"}}...
+                                </div>
+                                <a href={% url "blog" item.id %} class="main-button">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- ***** item End ***** -->
+
+    <!-- ***** Contact Us Start ***** -->
+    <section class="section colored" id="contact-us">
+        <div class="container">
+            <!-- ***** Section Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                      <h2 class="section-title">{{header_text.4.title}}</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                      <p>{{header_text.4.description}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Section Title End ***** -->
+
+            <div class="row">
+                <!-- ***** Contact Text Start ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <h5 class="margin-bottom-30">Keep in touch</h5>
+                    <div class="contact-text">
+                      <p>
+                        110-220 Quisque diam odio, maximus ac consectetur eu, 10260
+                        <br />auctor non lorem
+                      </p>
+                      <p>You are NOT allowed to re-distribute Softy Pinko template on any template collection websites. Thank you.</p>
+                    </div>
+                </div>
+                <!-- ***** Contact Text End ***** -->
+
+                <!-- ***** Contact Form Start ***** -->
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <div class="contact-form">
+                        <form id="contact">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                              <fieldset>
+                                <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                              <fieldset>
+                                <input name="email" type="email" class="form-control" id="email" placeholder="E-Mail Address" >
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <textarea name="content" rows="6" class="form-control" id="message" placeholder="Your Message" ></textarea>
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <button type="submit" id="form-submit" class="main-button">Send Message</button>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ***** Contact Form End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Contact Us End ***** -->
+{% endblock %}

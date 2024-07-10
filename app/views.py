@@ -7,7 +7,10 @@ from .models import (
     LeftBlock,
     RightBlock,
     WorkProcess,
-    Reviews
+    Reviews,
+    PricingPlan,
+    Counter,
+    Blog
     )
 
 def index(request):
@@ -18,6 +21,21 @@ def index(request):
         "left_block": LeftBlock.objects.all().first(),
         "right_block": RightBlock.objects.all().first(),
         "work_process_items": WorkProcess.objects.all(),
-        "reviews": Reviews.objects.all()
+        "reviews": Reviews.objects.all(),
+        "pricing_plan": PricingPlan.objects.all(),
+        "counter": Counter.objects.all().first(),
+        "all_blogs":Blog.objects.all()
     }
-    return render(request,"base.html", context)
+    return render(request,"home.html", context)
+
+def single_blog(request, blog_id):
+    #id = Blog.objects.get(pk=blog_id)
+    blog = Blog.objects.get(id=blog_id)
+
+    print(blog)
+    print(id)
+    return render(request, "single_blog.html", {
+        "id": id,
+        "blog": blog
+    })
+        

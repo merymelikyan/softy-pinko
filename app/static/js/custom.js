@@ -51,11 +51,11 @@
 	        })
 	        $(this).addClass('active');
 	      
-	       		var target = $(this.hash);
+				var target = $(this.hash);
 	        $('html, body').stop().animate({
 	            scrollTop: (target.offset().top) - 130
 	        }, 500, 'swing', function () {
-	    	            window.location.hash = target.selector;
+						window.location.hash = target.selector;
 	            $(document).on("scroll", onScroll);
 	        });
 	    });
@@ -64,11 +64,10 @@
 	function onScroll(event){
 	    var scrollPos = $(document).scrollTop();
 	    $('.nav a').each(function (e) {
-	      		var currLink = $(this);
+				var currLink = $(this);
 	        var refElement = $(currLink.attr("href"));
 	        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-	           			$('.nav ul li a').removeClass("active");
-							window.location.hash = currLink.attr("href");
+						$('.nav ul li a').removeClass("active");
 	            currLink.addClass("active");
 	        }
 	        else{
@@ -129,5 +128,24 @@
 		});
 	}
 
+$("#contact").on("submit", (e) => {
+	e.preventDefault();
+	const data = {
+		'name': $('input[name=name]').val(),
+		'email': $('input[name=email]').val(),
+		'content': $('textarea[name=content]').val(),
+		'csrfmiddlewaretoken': '{{ csrf_token }}'
+	};
+	$.post("http://127.0.0.1:8000/messages/receive_message/", data, () => {
+		console.log("all is okay");
+	});
 
+	e.target.reset();
+	});
+
+	
 })(window.jQuery);
+
+
+
+
